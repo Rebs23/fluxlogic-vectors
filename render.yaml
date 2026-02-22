@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: fluxlogic-vector1
+    runtime: python
+    plan: free
+    rootDir: .
+    buildCommand: pip install -r vector1_requirements.txt
+    startCommand: uvicorn vector1_app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /openapi.json
+    envVars:
+      - key: API_AUTH_TOKEN
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_CURRENCY
+        value: usd
+
+  - type: web
+    name: fluxlogic-vector2
+    runtime: python
+    plan: free
+    rootDir: .
+    buildCommand: pip install -r vector2_requirements.txt
+    startCommand: uvicorn vector2_app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /openapi.json
+    envVars:
+      - key: API_AUTH_TOKEN
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_CURRENCY
+        value: usd
+
+  - type: web
+    name: fluxlogic-vector3
+    runtime: python
+    plan: free
+    rootDir: .
+    buildCommand: pip install -r vector3_requirements.txt
+    startCommand: uvicorn vector3_app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /openapi.json
+    envVars:
+      - key: API_AUTH_TOKEN
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_CURRENCY
+        value: usd
